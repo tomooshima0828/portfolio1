@@ -19,8 +19,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap'
 
-# gem 'devise'
-# gem 'devise-i18n'
+gem 'devise'
+gem 'devise-i18n'
 
 group :development, :test do
   gem 'sqlite3'
