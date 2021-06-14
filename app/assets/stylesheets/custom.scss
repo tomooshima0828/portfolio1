@@ -16,6 +16,8 @@
 /* サイト全体のフォント指定 */
 body {
   font-family: "Hiragino";
+  color: #fff;
+  background: rgb(99, 96, 96);
 }
 
 h1 {
@@ -111,11 +113,13 @@ p {
   line-height: 2em;
 }
 
-#login {
+.devise-form {
   font-size: 1.2em;
 }
 
-
+.login-link {
+  color: rgb(32, 32, 32);
+}
 
 
 

@@ -74,6 +74,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.4)
       devise (>= 4.7.1)
+    devise-i18n-views (0.3.7)
     erubi (1.10.0)
     execjs (2.8.1)
     faker (2.18.0)
@@ -235,6 +236,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-i18n
+  devise-i18n-views
   faker
   jbuilder (~> 2.5)
   jquery-rails
