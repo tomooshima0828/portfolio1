@@ -1,0 +1,21 @@
+<h1>ユーザー一覧</h1>
+<div class="container">
+  
+    <table class="table table-bordered table-condensed table-hover">
+      <thead>
+        <tr>
+          <th>ユーザー名</th>
+          <th>メールアドレス</th>
+        </tr>
+      </thead>
+      <% @users.each do |user| %>
+        <tbody>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+          </tr>
+        </tbody>
+        <% end %>
+    </table>
+  </div>
+

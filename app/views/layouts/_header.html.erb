@@ -1,14 +1,28 @@
 <header class="header navbar nabvar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to 'ダミーシステム(仮)', root_path, id: "logo" %>
+    <%= link_to 'カットハウスオレンジ', root_path, id: "logo" %>
     <nav>
-      <ul class="nav navbar navbar-right" id="nav">
+      <ul class="nav navbar-nav navbar-right">
+
         <% if user_signed_in? %>
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+          <div class="btn-group dropleft">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= @user.name %>
+            </button>
+            <div class="dropdown-menu">
+              <!-- Dropdown menu links -->
+              <li><%= link_to 'ユーザー一覧', users_path, class: 'dropdown-item' %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+            </div>
+          </div>
         <% else %>
           <li><%= link_to '新規登録', new_user_registration_path, class: "nav-link" %></li>
           <li><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
         <% end %>
+
+
+
+      
       </ul>
     </nav>
   </div>
