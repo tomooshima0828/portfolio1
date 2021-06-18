@@ -36,14 +36,14 @@ ul, li {
 
 h1 {
   font-family: '851';
-  font-size: 4em;
+  font-size: 3em;
   letter-spacing: -5px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
-  
+  font-family: '851';
   font-size: 2em;
   letter-spacing: 0px;
   margin-bottom: 10px;
@@ -75,8 +75,8 @@ p {
   float: left;
   margin-left: 15px;
   font-size: 2.2em;
-  color: #fff;
-  background-color: rgb(211, 110, 16);
+  color: #000;
+  background-color: rgb(255, 147, 46);
   text-transform: uppercase;
   letter-spacing: 0px;
   padding-top: 7px;
@@ -90,38 +90,41 @@ p {
 
 .header{
   position: fixed;
-  background-color: rgb(211, 110, 16);
+  background-color: rgb(255, 147, 46);
+  opacity: 0.9;
   height: 4em;
   top: 0em;
   width: 100%;
-  z-index: 99;
+  z-index: 99; //一番上にくる
   border: none;
 }
 
 .nav {
+  font-size: 14px;
+  margin-top: 1.5px;
   margin-right: 10px;
-  color: #fff;
-  
+  color: #000;
+  background-color: rgb(255, 147, 46);
 }
 
 .navbar-center {
-  margin-left: 200px;
+  margin-left: 100px;
   float: left;
 }
 
-.nav-login {
-  color: #fff;
+.navbar-right {
   margin-top: 15px;
+  float: left;
 }
-
 
 .footer{
   position: fixed;
   bottom: 0em; /*下に固定*/
   width: 100%;
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: #fff;
   background-color: rgb(85, 65, 0);
+  opacity: 0.9;
   line-height: 2em;
 }
 
@@ -183,6 +186,21 @@ p {
 
 .highlight {
   background:linear-gradient(transparent 70%, #FFFF00 0%);
+}
+
+.form-control {
+  width: 350px;
+}
+
+.container-form {
+  border: dashed;
+  border-color: #000;
+  border-width: 1px;
+  width: 400px;
+  height: 400px;
+  padding-top: 30px;
+  background-color: rgb(238, 238, 224);
+  border-radius: 20px;
 }
 
 
