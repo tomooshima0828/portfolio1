@@ -1,13 +1,46 @@
 <% provide(:title, "Top") %>
 
-<div class="container">
-<div class="col-md-6 col-md-offset-3">
-<p class="center">こんなところにデザイン力のある美容師が！！ラフ可愛い系おすすめ☆</p>
-<%= image_tag 'orange1.png', size: "300x300" %>
-<p>ご予約はコチラから</p>
-<%= link_to '空席確認・予約', '#' %> 
 
+<div>
+<div class="center" style="line-height: 1.5em;">
+  <p>ワタシ史上最高!のカワイイになれる☆ 忙しくてもオシャレしたい! いつまでもキレイで若く!</p>
+  <p class="">男性のお客様もたくさんいらっしゃいます! 清潔感アップでモテるアナタを演出します!</p>
+</div>
+
+<ul class="box flexbox">
+    <li class="flexbox__item" style="margin-right: 5px;"><%= image_tag 'orange_logo.jpeg', size: "300x180" %></li>
+    <li class="flexbox__item" style="margin-right: 5px;"><%= image_tag 'orange_outside.png', size: "240x180" %></li>
+    <li class="flexbox__item"><%= image_tag 'orange_salon.png', size: "240x180" %></li>
+</ul>
+
+<ul class="box flexbox">
+  <li class="radius-square1">
+    <p class="highlight">Web予約で5%割引!!!</p>
+    <p>予約変更　キャンセル</p>
+    <p>こちらから☆</p>
+    <%= link_to 'ログイン', new_customer_session_path, class: "btn btn-lg btn-danger"%>
+    <p></p>
+    <p style="font-size: 14px;">はじめてのお客様 <%= link_to '新規登録', new_customer_registration_path, class: "btn btn-sm btn-warning" %></p>  
+  </li>
+  <li class="radius-square2">
+    <p>★お電話でのご予約はこちら★</p>
+    <p class="center" style="font-size:18px; font-weight:bold;">TEL: 0120-303-779</p>
+    <p>☆☆予約外の方はご来店の前に必ずお電話で空き状況をご確認ください☆☆</p>
+    <p>神奈川県厚木市愛甲12-941-3</p>
+    <p>営業時間: 09:00-19:00</p>
+    <p>定休日: 毎週火曜日、不定期休あり</p>
+  </li>
+  <li><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13005.655215729766!2d139.343523!3d35.419778!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfdfdff2b2373b8f0!2z44Kq44Os44Oz44K4!5e0!3m2!1sja!2sjp!4v1623997828895!5m2!1sja!2sjp" width="280" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe></li>
+</ul>
+
+
+
+<ul class="box flexbox">
+  <li class="radius-square3">
+    <p>従業員専用 <%= link_to 'ログイン', new_user_session_path, class: "btn btn-sm btn-primary" %></p>
+  </li>
+</ul>
 
 
 </div>
-</div>
+
