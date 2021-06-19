@@ -12,10 +12,10 @@ ja:
           password_confirmation: パスワード再入力
           created_at: 作成日
           updated_at: 更新日
-        customer:
-          id: ID
-          name: 名前
-          email: メールアドレス
+        event:
+          title: イベント名
+          started_at: 開始時間
+          finished_at: 終了時間
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日

@@ -1,31 +1,29 @@
-User.create!(name: "従業員専用_管理者",
-  email: "admin-employee@email.com",
+User.create!(name: "管理者",
+  email: "admin@email.com",
   password: "password",
-  admin: true)
-
-  Customer.create!(name: "お客様_管理者",
-    email: "admin-customer@email.com",
-    password: "password",
-    admin: true)
+  control_number: 101,
+  admin: true,
+  staff: true)
 
 5.times do |n|
   name  = Faker::Name.name
   email = "staff-#{n+1}@email.com"
   password = "password"
-  employee_number = (n+1)+100
+  control_number = (n+1)+200
   User.create!(name: name,
       email: email,
       password: password,
-      employee_number: employee_number)
+      control_number: control_number,
+      staff: true)
 end
 
 20.times do |n|
   name  = Faker::Name.name
   email = "customer-#{n+1}@email.com"
   password = "password"
-  customer_number = (n+1)+200
-  Customer.create!(name: name,
+  control_number = (n+1)+300
+  User.create!(name: name,
       email: email,
       password: password,
-      customer_number: customer_number)
+      control_number: control_number)
 end

@@ -13,10 +13,7 @@
 
     <div>
       <ul class="nav navbar-nav navbar-right">
-        <% if customer_signed_in? %>
-            【<%= link_to current_customer.name, customer_path(current_customer) %> さん】
-            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-sm btn-info nav-login" %>
-        <% elsif user_signed_in? %>
+        <% if user_signed_in? %>
           【スタッフ <%= link_to current_user.name, user_path(current_user) %> さん】
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-info nav-login" %>
         <% else %>
