@@ -19,7 +19,7 @@
         <td><%= event.title %></td>
         <td><%= l(event.started_at, format: :short) %></td>
         <td><%= event.note %></td>
-        <td><%= link_to '編集', edit_user_event_path(current_user, event) %></td>
+        <td><%= link_to '編集', edit_user_event_path(current_user, event), remote: true %></td>
         <td><%= link_to '削除', user_event_path(current_user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' } %></td>
       </tr>
     <% end %>
