@@ -9,6 +9,7 @@
     <tr>
       <th>予約</th>
       <th>予約時間</th>
+      <th>ご要望など</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -17,7 +18,7 @@
       <tr>
         <td><%= event.title %></td>
         <td><%= l(event.started_at, format: :short) %></td>
-        
+        <td><%= event.note %></td>
         <td><%= link_to '編集', edit_user_event_path(current_user, event) %></td>
         <td><%= link_to '削除', user_event_path(current_user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' } %></td>
       </tr>
@@ -39,4 +40,4 @@
 
 <!--モーダルウインドウ表示-->
 <div id="event-new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-
+<div id="event-edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

@@ -24,7 +24,14 @@ class EventsController < ApplicationController
   end
 
   def update
-     
+    @event = Event.find(params[:id])
+    if @event.update_attributes!(event_params)
+     flash[:success] = "予約情報の更新に成功しました。"
+     redirect_to user_events_path(current_user)
+    else
+    flash[:danger] = "予約情報の更新に失敗しました。"
+    render :edit
+    end
   end
 
   def show
