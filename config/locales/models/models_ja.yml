@@ -13,9 +13,10 @@ ja:
           created_at: 作成日
           updated_at: 更新日
         event:
-          title: イベント名
+          title: ご希望のサービス
           started_at: 開始時間
           finished_at: 終了時間
+          note: ご要望など
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日

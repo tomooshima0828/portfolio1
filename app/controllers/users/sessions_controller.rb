@@ -13,8 +13,10 @@ class Users::SessionsController < Devise::SessionsController
     
     if current_user.admin?
       redirect_to users_path
-    else
+    elsif current_user.staff?
       redirect_to user_path(current_user)
+    else
+      redirect_to user_events_path(current_user)
     end
   end
 

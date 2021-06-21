@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'static_pages#top'
 
   devise_for :users, :controllers => {
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get "sign_out", :to => "users/sessions#destroy" 
   end
 
-  resources :users
+  resources :users do
+    resources :events, except: :show
+  end
   
 end

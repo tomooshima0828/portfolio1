@@ -23,11 +23,11 @@
 body {
   font-family: "Hiragino-Maru";
   color: rgb(0, 0, 0);
-  background: rgb(253, 231, 169);
+  background: rgb(241, 229, 194);
 }
 
 .contents {
-
+  
 }
 
 ul, li {
@@ -91,7 +91,7 @@ p {
 .header{
   position: fixed;
   background-color: rgb(255, 147, 46);
-  opacity: 0.9;
+  opacity: 0.85;
   height: 4em;
   top: 0em;
   width: 100%;
@@ -125,8 +125,9 @@ p {
   font-size: 1.3em;
   color: #fff;
   background-color: rgb(85, 65, 0);
-  opacity: 0.9;
+  opacity: 0.85;
   line-height: 2em;
+
 }
 
 .radius-square1 {
@@ -203,6 +204,23 @@ p {
   background-color: rgb(238, 238, 224);
   border-radius: 20px;
 }
+
+.container-calendar {
+  border: dashed;
+  border-color: #000;
+  border-width: 1px;
+  width: 1000px;
+  height: 600px;
+  padding-top: 30px;
+  background-color: rgb(238, 238, 224);
+  border-radius: 20px;
+}
+
+.table-appointment {
+  width: 700px;
+}
+
+
 
 
 

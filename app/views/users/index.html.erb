@@ -1,4 +1,5 @@
-<h1>ユーザー一覧</h1>
+<h1>管理者専用ページ</h1>
+<p class='center'>【ユーザー一覧】</p>
 <div class="container">
   
     <table class="table table-bordered table-condensed table-hover">
@@ -6,13 +7,23 @@
         <tr>
           <th>ユーザー名</th>
           <th>メールアドレス</th>
+          <th>区分/詳細</th>
+          <th>削除</th>
         </tr>
       </thead>
       <% @users.each do |user| %>
         <tbody>
           <tr>
-            <td><%= user.name %></td>
+            <td><%= link_to user.name, user_path(user) %></td>
             <td><%= user.email %></td>
+            <% if user.admin? %>
+              <td>管理者</td>
+            <% elsif user.staff? %>
+              <td>スタッフ</td>
+            <% else %>
+              <td>お客様</td>
+            <% end %>
+            <td><%= link_to '削除', user_path(user), method: :delete, data: { confirm: "ユーザーを削除しますか?" }, class: "btn btn-xs btn-danger" %></td>
           </tr>
         </tbody>
         <% end %>
