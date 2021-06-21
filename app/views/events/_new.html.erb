@@ -1,0 +1,35 @@
+<div class="modal-dialog modal-md modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+
+      <h1 class="modal-title">新規ご予約</h1>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <%= form_with(model: @event, url: user_events_path(current_user), local: true, method: :post) do |f| %>
+                
+              <%= f.label :title %>
+              <%= f.select :title, [['カット、シャンプー'], ['カット、シャンプー、パーマ'], ['縮毛矯正'], ['着付け']], { include_blank: false, selected: 1 }, class: "form-control" %>
+
+              <%= f.label :started_at %>
+              <%= f.datetime_select :started_at, class: "form-control" %>
+              <% f.hidden_field :requested, :value => "requested" %>
+              <%= f.label :note %>
+              <%= f.text_area :note, class: "form-control" %>
+            
+              <%= f.submit "予約", class: "btn btn-md btn-primary" %>
+        
+              <button type="button" class="btn btn-default btn-info %>" data-dismiss="modal">
+                    キャンセル
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
