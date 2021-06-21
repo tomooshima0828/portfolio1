@@ -12,7 +12,7 @@
             <%= form_with(model: @event, url: user_events_path(current_user), local: true, method: :post) do |f| %>
                 
               <%= f.label :title %>
-              <%= f.select :title, [['カット、シャンプー'], ['カット、シャンプー、パーマ'], ['縮毛矯正'], ['着付け']], { include_blank: false, selected: 1 }, class: "form-control" %>
+              <%= f.select :title, [['カット、シャンプー'], ['カット、シャンプー、パーマ'], ['縮毛矯正'], ['着付け']], { include_blank: true }, class: "form-control" %>
 
               <%= f.label :started_at %>
               <%= f.datetime_select :started_at, class: "form-control" %>
