@@ -3,29 +3,34 @@
 
 <div class="col-sm-9 col-sm-offset-1">
 <div class="container">
-<%= link_to '新規予約', new_user_event_path(current_user), remote: true, class: "btn btn-md btn-primary" %>
+<%= link_to 'ご予約リクエスト', new_user_event_path(current_user), remote: true, class: "btn btn-md btn-primary" %>
+<p></p>
 <table class="table table-bordered table-condensed table-appointment">
   <thead>
     <tr>
-      <th>予約</th>
-      <th>予約時間</th>
-      <th>ご要望など</th>
-      <th colspan="2"></th>
+      <th class="center">ご希望の内容</th>
+      <th class="center">ご希望の時間</th>
+      <th class="center">ご希望のスタイリスト</th>
+      <th class="center">ご要望など</th>
+      <th class="center" colspan="2"></th>
     </tr>
   </thead>
   <tbody>
     <% @events.each do |event| %>
       <tr>
         <td><%= event.title %></td>
-        <td><%= l(event.started_at, format: :short) %></td>
+        <td class="center"><%= l(event.started_at, format: :short) %></td>
+        <td class="center"></td>
         <td><%= event.note %></td>
-        <td><%= link_to '編集', edit_user_event_path(current_user, event), remote: true %></td>
-        <td><%= link_to '削除', user_event_path(current_user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' } %></td>
+        <td class="center"><%= link_to '変更', edit_user_event_path(current_user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
+        <td class="center"><%= link_to '削除', user_event_path(current_user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-xs btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
+<p class="center">☆ご予約リクエストが完了するまでに約1-2日お時間をいただいております☆</p>
+<p class="center">☆ご予約のキャンセルは予約日の2日前までにお願いいたします☆</p>
 
 <div class="container container-calendar">
 <%= month_calendar events: @events do |date, events| %>
@@ -35,6 +40,16 @@
     <%= event.title %>
   <% end %>
 <% end %>
+</div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-1">
+<div class="container">
+<p class="center">☆その他のお問い合わせは<%= mail_to "admin@email.com", "こちら" %>までメールをお願いします☆</p>
+
+<p class="center">　　　　　</p>
+<p class="center">　　　　　</p>
+<p class="center">　　　　　</p>
 </div>
 </div>
 

@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_120915) do
     t.datetime "started_at"
     t.datetime "finished_at"
     t.string "note"
+    t.integer "selector_stylist_request", default: 0
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

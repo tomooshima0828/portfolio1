@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-md modal-dialog-center">
+<div class="modal-dialog modal-lg modal-dialog-center">
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -15,7 +15,9 @@
               <%= f.select :title, [['カット、シャンプー'], ['カット、シャンプー、パーマ'], ['縮毛矯正'], ['着付け']], { include_blank: true }, class: "form-control" %>
 
               <%= f.label :started_at %>
-              <%= f.datetime_select :started_at, class: "form-control" %>
+              <%= f.datetime_select :started_at, { minute_step: 30 } %>
+              <%= f.label :selector_stylist_request %>
+              <%= f.select :selector_stylist_request, [['希望なし'], ['担当者A'], ['担当者B'], ['担当者C']], { include_blank: true }, { class: "form-control" } %>
               <% f.hidden_field :requested, :value => "requested" %>
               <%= f.label :note %>
               <%= f.text_area :note, class: "form-control" %>

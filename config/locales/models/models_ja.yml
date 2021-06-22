@@ -14,9 +14,10 @@ ja:
           updated_at: 更新日
         event:
           title: ご希望のサービス
-          started_at: 開始時間
+          started_at: ご希望の日時
           finished_at: 終了時間
           note: ご要望など
+          selector_stylist_request: ご希望のスタイリスト
           password: パスワード
           password_confirmation: パスワード再入力
           created_at: 作成日
