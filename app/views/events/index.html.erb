@@ -5,33 +5,36 @@
 <div class="container">
 <%= link_to 'ご予約リクエスト', new_user_event_path(current_user), remote: true, class: "btn btn-md btn-primary" %>
 <p></p>
-<table class="table table-bordered table-condensed table-appointment">
+<table class="table table-bordered table-condensed table-striped table-appointment">
   <thead>
-    <tr>
-      <th class="center">ご希望の内容</th>
+    <tr>    
       <th class="center">ご希望の時間</th>
+      <th class="center">ご希望の内容</th>
       <th class="center">ご希望のスタイリスト</th>
-      <th class="center">ご要望など</th>
-      <th class="center" colspan="2"></th>
+      <th class="center">リクエスト状況</th>
+      <th class="center">変更</th>
+      <th class="center">削除</th>
     </tr>
   </thead>
   <tbody>
     <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td class="center"><%= l(event.started_at, format: :short) %></td>
-        <td class="center"></td>
-        <td><%= event.note %></td>
+      <tr> 
+        <td class="center"><%= l(event.started_at, format: :custom) %></td>
+        <td class="center"><%= event.title %></td>
+        <td class="center"><%= event.selector_stylist_request %></td>
+        <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
         <td class="center"><%= link_to '変更', edit_user_event_path(current_user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
         <td class="center"><%= link_to '削除', user_event_path(current_user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-xs btn-danger" %></td>
       </tr>
+      <td class="center">ご要望など</td>
+      <td colspan="5"><%= event.note %></td>
     <% end %>
   </tbody>
 </table>
 </div>
 <p class="center">☆ご予約リクエストが完了するまでに約1-2日お時間をいただいております☆</p>
 <p class="center">☆ご予約のキャンセルは予約日の2日前までにお願いいたします☆</p>
-
+<p class="center">☆定休日は毎週火曜日です☆</p>
 <div class="container container-calendar">
 <%= month_calendar events: @events do |date, events| %>
   <%= date.day %>

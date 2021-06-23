@@ -1,4 +1,13 @@
-<h1>スタッフ専用 勤務管理ページ</h1>
+<h1>スタッフ専用ページ</h1>
 
 <p class="center">【お客様ご予約状況】</p>
 
+<div class="container container-calendar">
+<%= month_calendar events: @events do |date, events| %>
+  <%= date.day %>
+  <% events.each do |event| %>
+    <%= event.started_at.hour %>:<%= event.started_at.min %>
+    <%= event.title %>
+  <% end %>
+<% end %>
+</div>

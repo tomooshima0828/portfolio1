@@ -1,3 +1,4 @@
+
 User.create!(name: "管理者",
   email: "admin@email.com",
   password: "password",
@@ -5,8 +6,8 @@ User.create!(name: "管理者",
   admin: true,
   staff: true)
 
-5.times do |n|
-  name  = Faker::Name.name
+3.times do |n|
+  name  = "スタッフ#{n+1}"
   email = "staff-#{n+1}@email.com"
   password = "password"
   control_number = (n+1)+200
@@ -18,7 +19,7 @@ User.create!(name: "管理者",
 end
 
 20.times do |n|
-  name  = Faker::Name.name
+  name  = "お客様#{n+1}"
   email = "customer-#{n+1}@email.com"
   password = "password"
   control_number = (n+1)+300

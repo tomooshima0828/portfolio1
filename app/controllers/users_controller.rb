@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(params[:email])
+    @events = Event.all
     
   end
 

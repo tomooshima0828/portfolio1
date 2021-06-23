@@ -2,9 +2,11 @@ class EventsController < ApplicationController
   
   def new
     @event = Event.new
+    
   end
 
   def create
+    
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save!
@@ -38,8 +40,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    
-    @events = Event.all
+    @events = Event.where("started_at >= ?", Date.today).order(started_at: "ASC")
   end
 
   def destroy 
@@ -52,7 +53,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :started_at, :finished_at, :note)
+    params.require(:event).permit(:title, :started_at, :finished_at, :note, :status_event_request, :selector_stylist_request)
   end
 
 end
