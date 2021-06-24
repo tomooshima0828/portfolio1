@@ -201,6 +201,7 @@ p {
   width: 400px;
   height: 400px;
   padding-top: 30px;
+  padding-left: 20px;
   background-color: rgb(238, 238, 224);
   border-radius: 20px;
 }
@@ -216,12 +217,12 @@ p {
   border-radius: 20px;
 }
 
-.table-appointment {
-  width: 980px;
+.table-custom {
   background-color: rgb(247, 247, 237);
   margin: 10px;
-  
+  width: 1000px;
 }
+
 
 .modal-dialog-center {
   padding-top: 10%;

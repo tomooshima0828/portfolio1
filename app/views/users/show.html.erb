@@ -1,13 +1,60 @@
 <h1>スタッフ専用ページ</h1>
 
-<p class="center">【お客様ご予約状況】</p>
+<div class="col-sm-9 col-sm-offset-1">
 
-<div class="container container-calendar">
-<%= month_calendar events: @events do |date, events| %>
-  <%= date.day %>
-  <% events.each do |event| %>
-    <%= event.started_at.hour %>:<%= event.started_at.min %>
-    <%= event.title %>
+<p class="center">【スタッフ情報】</p>
+<table class="table table-bordered table-condensed table-custom">
+  <thead>
+    <tr>
+      <th class="center">管理番号</th>
+      <th class="center">名前</th>
+      <th class="center">Email</th>
+      <th class="center">変更</th>
+    </tr>
+  </thead>
+    <tr class="center">
+      <td><%= current_user.control_number %></td>
+      <td><%= current_user.name %></td>
+      <td><%= current_user.email %></td>
+      <td><%= link_to '変更', edit_user_path(current_user), class: "btn btn-sm btn-primary" %></td>
+      
+    </tr>
+  <tbody>
+  </tbody>
+</table>
+
+<p class="center">【お客様ご予約状況】</p>
+  <% @users.each do |user| %>
+  <table class="table table-bordered table-condensed table-custom">
+  <thead>
+    <tr>
+      <th class="center">お名前</th>    
+      <th class="center">ご希望の時間</th>
+      <th class="center">ご希望の内容</th>
+      <th class="center">ご希望のスタイリスト</th>
+      <th class="center">リクエスト状況</th>
+      <th class="center">変更</th>
+      <th class="center">削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+    <% if event.user_id == user.id %> <%# これでeventのなかで該当するuserのeventだけを表示する  %>
+      <tr> 
+        <td class="center"><%= user.name %></td>
+        <td class="center"><%= l(event.started_at, format: :custom) %></td>
+        <td class="center"><%= event.title %></td>
+        <td class="center"><%= event.selector_stylist_request %></td>
+        <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
+        <td class="center"><%= link_to '変更', edit_user_event_path(user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
+        <td class="center"><%= link_to '削除', user_event_path(user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-xs btn-danger" %></td>
+      </tr>
+      <td class="center">ご要望など</td>
+      <td colspan="5"><%= event.note %></td>
+      <% end %>
+    <% end %>
   <% end %>
-<% end %>
+  </tbody>
+</table>
+</div>
 </div>

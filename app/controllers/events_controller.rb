@@ -40,7 +40,8 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.where("started_at >= ?", Date.today).order(started_at: "ASC")
+    @events = Event.where(user_id: current_user.id).where("started_at >= ?", Date.today).order(started_at: "ASC")
+    
   end
 
   def destroy 

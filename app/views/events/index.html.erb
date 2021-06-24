@@ -5,9 +5,9 @@
 <div class="container">
 <%= link_to 'ご予約リクエスト', new_user_event_path(current_user), remote: true, class: "btn btn-md btn-primary" %>
 <p></p>
-<table class="table table-bordered table-condensed table-striped table-appointment">
+<table class="table table-bordered table-condensed table-striped table-custom">
   <thead>
-    <tr>    
+    <tr>   
       <th class="center">ご希望の時間</th>
       <th class="center">ご希望の内容</th>
       <th class="center">ご希望のスタイリスト</th>
@@ -18,7 +18,7 @@
   </thead>
   <tbody>
     <% @events.each do |event| %>
-      <tr> 
+      <tr>
         <td class="center"><%= l(event.started_at, format: :custom) %></td>
         <td class="center"><%= event.title %></td>
         <td class="center"><%= event.selector_stylist_request %></td>
