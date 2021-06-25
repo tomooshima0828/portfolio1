@@ -3,7 +3,7 @@
 <div class="col-sm-9 col-sm-offset-1">
 
 <p class="center">【スタッフ情報】</p>
-<table class="table table-bordered table-condensed table-custom">
+<table class="table table-bordered table-condensed table-striped table-staff">
   <thead>
     <tr>
       <th class="center">管理番号</th>
@@ -25,10 +25,11 @@
 
 <p class="center">【お客様ご予約状況】</p>
   <% @users.each do |user| %>
-  <table class="table table-bordered table-condensed table-custom">
+  <table class="table table-bordered table-condensed table-staff">
+  
   <thead>
-    <tr>
-      <th class="center">お名前</th>    
+    <tr><th colspan="6" class="center"><%= user.name %> からのご予約</th></tr>
+    <tr> 
       <th class="center">ご希望の時間</th>
       <th class="center">ご希望の内容</th>
       <th class="center">ご希望のスタイリスト</th>
@@ -41,7 +42,6 @@
     <% @events.each do |event| %>
     <% if event.user_id == user.id %> <%# これでeventのなかで該当するuserのeventだけを表示する  %>
       <tr> 
-        <td class="center"><%= user.name %></td>
         <td class="center"><%= l(event.started_at, format: :custom) %></td>
         <td class="center"><%= event.title %></td>
         <td class="center"><%= event.selector_stylist_request %></td>
@@ -51,11 +51,11 @@
 
       </tr>
       <thead>
-        <th colspan="6" class="center">ご要望など</th>
+        <th colspan="5" class="center">ご要望など</th>
         <th class="center">リクエスト状況の更新</th>
       </thead>
       <tbody>
-        <td colspan="6"><%= event.note %></td>
+        <td colspan="5"  class="center"><%= event.note %></td>
         <td class="center">
           <%= form_with(model: @event, url: update_request_status_user_path(user, event), method: :patch, local: true) do |f| %>
             <%= f.select :status_event_request, [['リクエスト中'], ['確認済'],['変更が必要'], ['保留中']], { include_blank: true } %>

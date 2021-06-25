@@ -21,12 +21,13 @@ class EventsController < ApplicationController
   end
 
   def edit
-    
     @event = Event.find(params[:id])
+    
   end
 
   def update
     @event = Event.find(params[:id])
+    
     if @event.update_attributes!(event_params)
      flash[:success] = "予約情報の更新に成功しました。"
      redirect_to user_events_path(current_user)
@@ -55,6 +56,8 @@ class EventsController < ApplicationController
 
   private
 
-  
+  def event_params
+    params.require(:event).permit(:title, :started_at, :finished_at, :note, :status_event_request, :selector_stylist_request)
+  end
 
 end

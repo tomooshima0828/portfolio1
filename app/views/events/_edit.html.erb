@@ -18,8 +18,7 @@
               <%= f.datetime_select :started_at, class: "form-control" %>
               <%= f.label :selector_stylist_request %>
               <%= f.select :selector_stylist_request, [['希望なし'], ['担当者A'], ['担当者B'], ['担当者C']], { include_blank: true }, { class: "form-control" } %>
-              <% f.hidden_field :status_event_request, value: "リクエスト中" %>
-              <% f.hidden_field :requested, :value => "requested" %>
+              <%= f.hidden_field :status_event_request, value: "リクエスト中" %>
               <%= f.label :note %>
               <%= f.text_area :note, class: "form-control" %>
             
