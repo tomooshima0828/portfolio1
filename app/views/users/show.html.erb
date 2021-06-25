@@ -16,7 +16,7 @@
       <td><%= current_user.control_number %></td>
       <td><%= current_user.name %></td>
       <td><%= current_user.email %></td>
-      <td><%= link_to '変更', edit_user_path(current_user), class: "btn btn-sm btn-primary" %></td>
+      <td><%= link_to '変更', edit_user_path(current_user), remote: true, class: "btn btn-sm btn-primary" %></td>
       
     </tr>
   <tbody>
@@ -32,9 +32,9 @@
       <th class="center">ご希望の時間</th>
       <th class="center">ご希望の内容</th>
       <th class="center">ご希望のスタイリスト</th>
-      <th class="center">リクエスト状況</th>
       <th class="center">変更</th>
       <th class="center">削除</th>
+      <th class="center">リクエスト状況</th>
     </tr>
   </thead>
   <tbody>
@@ -45,16 +45,36 @@
         <td class="center"><%= l(event.started_at, format: :custom) %></td>
         <td class="center"><%= event.title %></td>
         <td class="center"><%= event.selector_stylist_request %></td>
+        <td class="center"><%= link_to '変更', edit_event_response_user_path(user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
+        <td class="center"><%= link_to '削除', destroy_event_response_user_path(user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-xs btn-info" %></td>
         <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
-        <td class="center"><%= link_to '変更', edit_user_event_path(user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
-        <td class="center"><%= link_to '削除', user_event_path(user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-xs btn-danger" %></td>
+
       </tr>
-      <td class="center">ご要望など</td>
-      <td colspan="5"><%= event.note %></td>
+      <thead>
+        <th colspan="6" class="center">ご要望など</th>
+        <th class="center">リクエスト状況の更新</th>
+      </thead>
+      <tbody>
+        <td colspan="6"><%= event.note %></td>
+        <td class="center">
+          <%= form_with(model: @event, url: update_request_status_user_path(user, event), method: :patch, local: true) do |f| %>
+            <%= f.select :status_event_request, [['リクエスト中'], ['確認済'],['変更が必要'], ['保留中']], { include_blank: true } %>
+            <%= f.submit "更新", class: "btn btn-xs btn-danger" %>
+          <% end %>
+        </td>
+      </tbody>
       <% end %>
     <% end %>
   <% end %>
   </tbody>
 </table>
+<p class="center">　　　　　</p>
+<p class="center">　　　　　</p>
+<p class="center">　　　　　</p>
 </div>
 </div>
+
+<%# モーダルウィンドウ %>
+<div id="user-edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
+<div id="user-edit-event-response" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

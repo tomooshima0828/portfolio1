@@ -38,11 +38,42 @@ class UsersController < ApplicationController
     redirect_to users_path(current_user)
   end
 
+  def edit_event_response
+    @user = User.find(params[:id])
+    @event = Event.find(params[:format])
+  end
+
+  def update_event_response
+    
+  end
+
+  def destroy_event_response
+    
+    event = Event.find(params[:format]) # paramsにidが入っているので、それを取得してローカル変数に代入する
+    event.destroy # ローカル変数に入ったオブジェクトを削除する
+    flash[:success] = "予約リクエストを削除しました。"
+    redirect_to user_path(current_user)
+  end
+
+  def update_request_status
+    user = User.find(params[:id])
+    event = Event.find(params[:format])
+    
+
+    event.update_attributes!(event_status_params)
+    flash[:success] = "お客様リクエストを更新しました"
+    redirect_to user_path(current_user) and return
+  rescue
+    flash[:danger] = "お客様リクエストの更新に失敗しました"
+    redirect_to user_path(current_user) and return
+  end
+
   private
 
-  def user_params
-    params.require(:user).permit(:name, :email)
+  def event_status_params
+    params.permit(:status_event_request)
   end
+  
 
   def current_user_admin?
     unless current_user.admin?

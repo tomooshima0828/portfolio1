@@ -6,5 +6,16 @@ class ApplicationController < ActionController::Base
     users_path(resource)
   end
 
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email)
+  end
+
+  
+  def event_params
+    params.require(:event).permit(:title, :started_at, :finished_at, :note, :status_event_request, :selector_stylist_request)
+  end
+
 
 end

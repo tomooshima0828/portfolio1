@@ -51,10 +51,10 @@ class EventsController < ApplicationController
     redirect_to user_events_path
   end
 
+  
+
   private
 
-  def event_params
-    params.require(:event).permit(:title, :started_at, :finished_at, :note, :status_event_request, :selector_stylist_request)
-  end
+  
 
 end

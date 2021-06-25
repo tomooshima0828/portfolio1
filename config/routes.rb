@@ -13,6 +13,14 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    member do # memberは:idあり
+      # GET	/users/:id/edit_event_response
+      get "edit_event_response"
+      patch "update_event_response"
+      delete "destroy_event_response"
+      
+      patch "update_request_status"
+    end
     resources :events, except: :show
   end
   
