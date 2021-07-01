@@ -52,12 +52,23 @@ class EventsController < ApplicationController
     redirect_to user_events_path
   end
 
+  def edit_account_info
+    @user = current_user
+  end
+
+  def update_account_info
+    current_user.update_attributes!(user_params)
+    flash[:success] = "ユーザー情報を更新しました"
+    redirect_to user_events_path(current_user) and return
+  rescue
+    flash[:danger] = "ユーザー情報の更新に問題がありました"
+    redirect_to user_events_path(current_user) and return
+  end
+
   
 
   private
 
-  def event_params
-    params.require(:event).permit(:title, :started_at, :finished_at, :note, :status_event_request, :selector_stylist_request)
-  end
+  
 
 end

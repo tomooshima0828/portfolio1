@@ -5,6 +5,33 @@
         <span aria-hidden="true">×</span>
       </button>
 
+      <h1 class="modal-title">ご予約の変更</h1>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <%= form_with(model: @event, url: update_event_response_user_path(@event), local: true, method: :patch) do |f| %>
+                
+              <%= f.label :title %>
+              <%= f.select :title, [['カット、シャンプー(¥3,800税込)'], ['カット、シャンプー、パーマ(¥9,800税込)'], ['縮毛矯正(¥4,800税込)'], ['着付け(¥5,800税込)']], { include_blank: true }, class: "form-control" %>
+
+              <%= f.label :started_at %>
+              <%= f.datetime_select :started_at, { minute_step: 30, start_hour: 9, end_hour: 18 } %>
+              <%= f.label :selector_stylist_request %>
+              <%= f.select :selector_stylist_request, [['希望なし'], ['担当者1'], ['担当者2'], ['担当者3']], { include_blank: true }, { class: "form-control" } %>
+              <%#= f.hidden_field :status_event_request, value: "リクエスト中" %>
+              <%= f.label :note %>
+              <%= f.text_area :note, class: "form-control" %>
+            
+              <%= f.submit "変更", class: "btn btn-md btn-primary" %>
+        
+              <button type="button" class="btn btn-default btn-info %>" data-dismiss="modal">
+                    キャンセル
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

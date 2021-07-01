@@ -1,21 +1,51 @@
 <h1>管理者専用ページ</h1>
-<p class='center'>【ユーザー一覧】</p>
 <div class="container">
-  
+<%= link_to '<<管理者専用トップページに戻る', admin_top_user_path(current_user), style: "font-size:16px;" %>
+
+
+  <p class="center">【<%= current_user.name%>さんのアカウント情報】</p>
+  <table class="table table-bordered table-condensed table-account">
+    <thead>
+      <tr>
+        <th class="table-head-3">管理番号</th>
+        <th class="table-head-3">名前</th>
+        <th class="table-head-3">Email</th>
+        <th class="table-head-3">電話番号</th>
+        <th class="table-head-3">変更</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="center">
+        <td><%= current_user.control_number %></td>
+        <td><%= current_user.name %></td>
+        <td><%= mail_to current_user.email %></td>
+        <td><%= current_user.phone %></td>
+        <td><%= link_to '変更', edit_user_registration_path(current_user), local: true, class: "btn btn-xs btn-primary" %></td>
+      </tr>
+    </tbody>
+      <th class="table-head-3">住所</th>
+      <td colspan="4" class="center"><%= current_user.address %></td>
+  </table>
+
+
+<p class='center'>【ユーザー一覧】</p>
+<p></p>
     <table class="table table-bordered table-condensed table-hover">
       <thead>
-        <tr>
-          <th>ユーザー名</th>
-          <th>メールアドレス</th>
-          <th>区分/詳細</th>
-          <th>削除</th>
+        <tr class="table-head-1">
+          <th class="center">管理番号</th>
+          <th class="center">ユーザー名</th>
+          <th class="center">メールアドレス</th>
+          <th class="center">区分/詳細</th>
+          <th class="center">削除</th>
         </tr>
       </thead>
       <% @users.each do |user| %>
         <tbody>
-          <tr>
+          <tr class="center table-account">
+            <td><%= user.control_number %></td>
             <td><%= link_to user.name, user_path(user) %></td>
-            <td><%= user.email %></td>
+            <td><%= mail_to user.email %></td>
             <% if user.admin? %>
               <td>管理者</td>
             <% elsif user.staff? %>
@@ -23,10 +53,20 @@
             <% else %>
               <td>お客様</td>
             <% end %>
-            <td><%= link_to '削除', user_path(user), method: :delete, data: { confirm: "ユーザーを削除しますか?" }, class: "btn btn-xs btn-danger" %></td>
+            <td>
+              <% if !user.admin? %>
+                <%= link_to '削除', user_path(user), method: :delete, data: { confirm: "ユーザーを削除しますか?" }, class: "btn btn-xs btn-danger" %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
         <% end %>
     </table>
+    <p>　　　　　</p>
+    <p>　　　　　</p>
+    <p>　　　　　</p>
   </div>
+
+
+  
 

@@ -166,20 +166,6 @@ p {
   font-size: 12px;            /* 文字サイズ指定 */
 }
 
-.radius-square3 {
-  width: 400px;            /* 幅指定 */
-  height: 60px;              /* 高さ指定 */
-  border-radius: 20px;        /* 角丸指定 */
-  display:  inline-block;     /* インラインブロックする */
-  box-sizing:  border-box;    /* 崩れ防止 */
-  margin-bottom: 5px;         /* 要素の空き具合指定 */
-  padding:  15px;             /* 余白指定 */
-  font-family: "ヒラギノ丸ゴ Pro W4","Hiragino Maru Gothic Pro";    /* フォントの種類を指定 */
-  text-align:  center;        /* 中央揃え */
-  color:  rgb(0, 0, 0);               /* 文字色指定 */
-  background-color:#d4c096;
-  font-size: 15px;            /* 文字サイズ指定 */
-}
 
 .flexbox{
   display: flex;
@@ -208,6 +194,20 @@ p {
   border-radius: 20px;
 }
 
+.container-form-user {
+  border: dashed;
+  border-color: #000;
+  border-width: 1px;
+  width: 400px;
+  height: 750px;
+  padding-top: 30px;
+  padding-left: 20px;
+  background-color: rgb(238, 238, 224);
+  border-radius: 20px;
+}
+
+
+
 .container-calendar {
   border: dashed;
   border-color: #000;
@@ -219,24 +219,68 @@ p {
   border-radius: 20px;
 }
 
-.table-staff {
-  background-color: rgb(247, 247, 237);
-  margin: 10px;
-  
-}
-
-.table-customer {
+.table-account {
   background-color: rgb(247, 247, 237);
   width: 1000px;
   margin: 10px;
   
 }
 
-
 .modal-dialog-center {
   padding-top: 10%;
   
 }
+
+.table-head-1 {
+  text-align: center;
+  background-color: #d2d8f7;
+}
+
+.table-head-2 {
+  font-size: 16px;
+  text-align: center;
+  background-color: #9baaff;
+}
+
+.table-head-3 {
+  text-align: center;
+  background-color: #ffa8f8;
+}
+
+.radius-square-admin {
+  width: 260px;            /* 幅指定 */
+  height: 240px;              /* 高さ指定 */
+  border-radius: 40px;        /* 角丸指定 */
+  display:  inline-block;     /* インラインブロックする */
+  box-sizing:  border-box;    /* 崩れ防止 */
+  margin-bottom: 5px;
+  margin-right: 5px;         /* 要素の空き具合指定 */
+  padding:  20px;             /* 余白指定 */
+  font-family: "ヒラギノ丸ゴ Pro W4","Hiragino Maru Gothic Pro";    /* フォントの種類を指定 */
+  text-align:  center;        /* 中央揃え */
+  line-height: 1.5em;
+  color:  rgb(0, 0, 0);               /* 文字色指定 */
+  background-color:rgb(233, 147, 245);
+  font-size: 17px;            /* 文字サイズ指定 */
+}
+
+.radious-square-bg1{
+  background-color:rgb(233, 147, 245);
+}
+
+.radious-square-bg2{
+  background-color:rgb(178, 253, 253);
+}
+
+.radious-square-bg3{
+  background-color:rgb(215, 255, 170);
+}
+
+
+
+
+
+
 
 
 

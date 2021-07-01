@@ -1,0 +1,30 @@
+<h1>管理者専用ページ</h1>
+
+<div class="container">
+<%= link_to '<<管理者専用トップページに戻る', admin_top_user_path(current_user), style: "font-size:16px;" %>
+<p class='center'>【メニュー&料金一覧】</p>
+<table class="table table-bordered table-condensed table-hover">
+  <thead>
+    <tr class="table-head-1">
+      <th class="center">サービス番号</th>
+      <th class="center">サービス名</th>
+      <th class="center">価格</th>
+      <th class="center">削除</th>
+    </tr>
+  </thead>
+  <% @menus.each do |menu| %>
+    <tbody>
+      <tr class="center table-account">
+        <td><%= menu.item_number %></td>
+        <td><%= menu.item %></td>
+        <td><%= menu.price %></td>
+        <td><%= link_to '削除', menu_path(menu), method: :delete, data: { confirm: "メニューを削除しますか?" }, class: "btn btn-xs btn-danger" %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+    <p>　　　　　</p>
+    <p>　　　　　</p>
+    <p>　　　　　</p>
+</div>
+

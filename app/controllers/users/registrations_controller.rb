@@ -20,9 +20,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    # super
+    current_user.update_attributes!(user_params)
+    flash[:success] = "ユーザー情報を更新しました"
+    if current_user.staff? || current_user.admin?
+      redirect_to user_path(current_user) and return
+    else
+      redirect_to user_events_path(current_user) and return
+    end
+  rescue
+    flash[:danger] = "ユーザー情報の更新に問題がありました"
+    redirect_to root_url and return
+  end
 
   # DELETE /resource
   # def destroy

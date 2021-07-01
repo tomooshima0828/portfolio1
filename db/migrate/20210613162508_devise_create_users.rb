@@ -10,6 +10,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :control_number
       t.boolean :admin, default: false
       t.boolean :staff, default: false
+      t.string :phone
+      t.string :address
 
       ## Recoverable
       t.string   :reset_password_token

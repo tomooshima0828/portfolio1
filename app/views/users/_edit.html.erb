@@ -6,14 +6,14 @@
       </button>
 
 
-<h1 class="modal-title">スタッフ情報の編集</h1>
+<h1 class="modal-title">ユーザー情報の編集</h1>
 <div class="modal-body">
 <div class="container">
   
-    <%= form_with(model: @user, url: user_path(current_user), local: true) do |f| %>
+    <%= form_with(model: @user, url: user_path(@user), local: true) do |f| %>
       <div class="form-group">
         <%= f.label :control_number %>
-        <p><%= current_user.control_number %></p>
+        <%= f.number_field :control_number, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= f.label :name %>
@@ -23,9 +23,19 @@
         <%= f.label :email %>
         <%= f.text_field :email, class: "form-control" %>
       </div>
+
+      <div class="form-group">
+        <%= f.label :phone %>
+        <%= f.text_field :phone, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
       
       <%= f.submit "変更", class: "btn btn-md btn-primary" %>
-      <%= link_to 'キャンセル', user_path(current_user), class: "btn btn-md btn-info" %>
+      <%= link_to 'キャンセル', user_path(@user), class: "btn btn-md btn-info" %>
       
     <% end %>
 </div>

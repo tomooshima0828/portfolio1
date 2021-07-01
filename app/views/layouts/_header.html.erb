@@ -5,27 +5,26 @@
     <div>
       <ul class="nav navbar-nav navbar-center">
         <li><%= link_to 'ホーム', root_url, class: "nav" %></li>
-        <li><%= link_to 'メニュー☆料金', '#', class: "nav" %></li>
-        <li><%= link_to 'スタッフ紹介', '#', class: "nav" %></li>
-        <li><%= link_to 'お問い合わせ', '#', class: "nav" %></li>
+        <li><%= link_to 'メニュー☆料金', menus_overview_path, class: "nav" %></li>
+        <li><%= link_to 'スタッフ紹介', staff_path, class: "nav" %></li>
+        <li><%= link_to 'お問い合わせ', inquiry_path, class: "nav" %></li>
       </ul>    
     </div>
 
     <div>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? && current_user.admin? %>
-          【管理者 <%= link_to current_user.name, users_path(current_user) %> さん】
+          【<%= link_to current_user.name, admin_top_user_path(current_user), { style: "font-size: 16px;" } %>さん】
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-info nav-login" %>
         <% elsif user_signed_in? && current_user.staff? %>
-          【スタッフ <%= link_to current_user.name, user_path(current_user) %> さん】
+          【<%= link_to current_user.name, user_path(current_user), { style: "font-size: 16px;" } %>さん】
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-info nav-login" %>
-        <% elsif user_signed_in? %>
-          【お客様 <%= link_to current_user.name, user_events_path(current_user) %> さん】
+        <% elsif user_signed_in? %> 
+          【<%= link_to current_user.name, user_events_path(current_user), { style: "font-size: 16px;" } %>さん】
            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-info nav-login" %>
         <% else %>
           <%= link_to '新規登録', new_user_registration_path, class: "btn btn-sm btn-info" %>
           <%= link_to 'ログイン', new_user_session_path, class: "btn btn-sm btn-primary"%>
-
         <% end %>
       </ul>
     </div>

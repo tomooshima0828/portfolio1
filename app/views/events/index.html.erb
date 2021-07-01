@@ -1,61 +1,90 @@
 <%= javascript_include_tag 'application' %>
-<h1>予約／予約変更／キャンセル</h1>
+<h1>お客様専用ページ</h1>
 
 <div class="col-sm-9 col-sm-offset-1">
-<div class="container">
-<%= link_to 'ご予約リクエスト', new_user_event_path(current_user), remote: true, class: "btn btn-md btn-primary" %>
-<p></p>
-<table class="table table-bordered table-condensed table-striped table-customer">
-  <thead>
-    <tr>   
-      <th class="center">ご希望の時間</th>
-      <th class="center">ご希望の内容</th>
-      <th class="center">ご希望のスタイリスト</th>
-      <th class="center">リクエスト状況</th>
-      <th class="center">変更</th>
-      <th class="center">削除</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @events.each do |event| %>
+  <p class="center">【<%= current_user.name%>さんのアカウント情報】</p>
+  <table class="table table-bordered table-condensed table-account">
+    <thead>
       <tr>
-        <td class="center"><%= l(event.started_at, format: :custom) %></td>
-        <td class="center"><%= event.title %></td>
-        <td class="center"><%= event.selector_stylist_request %></td>
-        <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
-        <td class="center"><%= link_to '変更', edit_user_event_path(current_user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
-        <td class="center"><%= link_to '削除', user_event_path(current_user, event), method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-xs btn-danger" %></td>
+        <th class="table-head-3">管理番号</th>
+        <th class="table-head-3">名前</th>
+        <th class="table-head-3">Email</th>
+        <th class="table-head-3">電話番号</th>
+        <th class="table-head-3">変更</th>
       </tr>
-      <td class="center">ご要望など</td>
-      <td colspan="5"  class="center"><%= event.note %></td>
-    <% end %>
-  </tbody>
-</table>
-</div>
-<p class="center">☆ご予約リクエストが完了するまでに約1-2日お時間をいただいております☆</p>
-<p class="center">☆ご予約のキャンセルは予約日の2日前までにお願いいたします☆</p>
-<p class="center">☆定休日は毎週火曜日です☆</p>
-<div class="container container-calendar">
-<%= month_calendar events: @events do |date, events| %>
-  <%= date.day %>
-  <% events.each do |event| %>
-    <%= event.started_at.hour %>:<%= event.started_at.min %>
-    <%= event.title %>
-  <% end %>
-<% end %>
-</div>
-</div>
+    </thead>
+    <tbody>
+      <tr class="center">
+        <td><%= current_user.control_number %></td>
+        <td><%= current_user.name %></td>
+        <td><%= mail_to current_user.email %></td>
+        <td><%= current_user.phone %></td>
+        <td><%= link_to '変更', edit_user_registration_path(current_user), local: true, class: "btn btn-xs btn-primary" %></td>
+      </tr>
+    </tbody>
+      <th class="table-head-3">住所</th>
+      <td colspan="4" class="center"><%= current_user.address %></td>
+  </table>
 
-<div class="col-sm-9 col-sm-offset-1">
-<div class="container">
-<p class="center">☆その他のお問い合わせは<%= mail_to "admin@email.com", "こちら" %>までメールをお願いします☆</p>
 
-<p class="center">　　　　　</p>
-<p class="center">　　　　　</p>
-<p class="center">　　　　　</p>
+  <p class="center">☆こちらからご入力ください☆
+    <%= link_to '新規ご予約リクエスト', new_user_event_path(current_user), remote: true, class: "btn btn-lg btn-danger" %>
+  </p>
+
+  <p></p>
+  <p class="center">【リクエスト済み一覧】</p>
+    <table class="table table-bordered table-condensed table-account">
+      <thead>
+        <tr>   
+          <th class="table-head-1">ご希望の時間</th>
+          <th class="table-head-1">ご希望の内容</th>
+          <th class="table-head-1">ご希望のスタイリスト</th>
+          <th class="center" style="background-color: #FFFF00;">リクエスト状況</th>
+          <th class="table-head-1">変更</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+          <tr>
+            <td class="center"><%= l(event.started_at, format: :custom) %></td>
+            <td class="center"><%= event.title %></td>
+            <td class="center"><%= event.selector_stylist_request %></td>
+            <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
+            <td class="center"><%= link_to '変更', edit_user_event_path(current_user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
+          </tr>
+          <td class="table-head-1">ご要望/通信欄</td>
+          <td colspan="5"  class="center"><%= event.note %></td>
+          
+        <% end %>
+      </tbody>
+    </table>
+
+    <p class="center">☆ご予約リクエストが完了するまでに約1-2日お時間をいただいております☆</p>
+    <p class="center">☆ご予約のキャンセルは予約日の2日前までにご連絡をお願いいたします☆</p>
+    <p class="center">☆定休日は毎週火曜日です☆</p>
+    <div class="container-calendar">
+      <%= month_calendar events: @events do |date, events| %>
+        <%= date.day %>
+        <% events.each do |event| %>
+          <%= event.started_at.hour %>:<%= event.started_at.min %>
+          <%= event.title %>
+        <% end %>
+      <% end %>
+    </div>
+
+  
+  <div class="container">
+    <p class="center">☆その他のお問い合わせは<%= mail_to "admin@email.com", "こちら" %>までメールをお願いします☆</p>
+
+    <p class="center">　　　　　</p>
+    <p class="center">　　　　　</p>
+    <p class="center">　　　　　</p>
+  </div>
 </div>
-</div>
+  
 
 <!--モーダルウインドウ表示-->
 <div id="event-new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="event-edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
+<div id="event-edit-account-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

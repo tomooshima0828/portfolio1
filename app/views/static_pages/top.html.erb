@@ -19,9 +19,21 @@
     <p class="highlight">Web予約で5%割引!!!</p>
     <p>予約変更　キャンセル</p>
     <p>こちらから☆</p>
-    <%= link_to 'ログイン', new_user_session_path, class: "btn btn-lg btn-danger"%>
-    <p></p>
-    <p style="font-size: 14px;">はじめてのお客様 <%= link_to '新規登録', new_user_registration_path, class: "btn btn-md btn-warning" %></p>  
+    <% if user_signed_in? %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-lg btn-primary" %><br>
+      <p></p>
+      <% if current_user.admin? %>
+        <p style="font-size: 14px;"><%= link_to current_user.name, admin_top_user_path(current_user), { style: "font-size: 16px;" } %>さんがログイン中</p>
+      <% elsif current_user.staff? %>
+        <p style="font-size: 14px;"><%= link_to current_user.name, user_path(current_user), { style: "font-size: 16px;" } %>さんがログイン中</p>
+      <% else %>
+        <p style="font-size: 14px;"><%= link_to current_user.name, user_events_path(current_user), { style: "font-size: 16px;" } %>さんがログイン中</p>
+      <% end %>
+    <% else %>
+      <%= link_to 'ログイン', new_user_session_path, class: "btn btn-lg btn-danger"%>
+      <p></p>
+      <p style="font-size: 14px;">はじめてのお客様 <%= link_to '新規登録', new_user_registration_path, class: "btn btn-md btn-info" %></p>  
+    <% end %>
   </li>
   <li class="radius-square2">
     <p>★お電話でのご予約はこちら★</p>

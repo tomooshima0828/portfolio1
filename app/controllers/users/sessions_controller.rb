@@ -10,9 +10,10 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    
+    # redirect_to XXXXXX(current_user) 必ずcurrent_userを書くこと。
+    # current_userにidが格納されている。paramsにはidが含まれない。
     if current_user.admin?
-      redirect_to users_path
+      redirect_to admin_top_user_path(current_user)
     elsif current_user.staff?
       redirect_to user_path(current_user)
     else
