@@ -40,31 +40,26 @@ end
 end
 
 Menu.create!(
-  item: "カット",
+  item: "カット、シャンプー",
   item_number: 1,
-  price: 4000
+  price: 3800
 )
 
 Menu.create!(
-  item: "シャンプー",
+  item: "カット、シャンプー、パーマ",
   item_number: 2,
-  price: 1000
+  price: 9800
 )
 
 Menu.create!(
-  item: "カラー",
+  item: "縮毛矯正",
   item_number: 3,
-  price: 3000
-)
-
-Menu.create!(
-  item: "パーマ",
-  item_number: 4,
-  price: 3000
+  price: 4800
 )
 
 Menu.create!(
   item: "着付け",
-  item_number: 5,
-  price: 5000
+  item_number: 4,
+  price: 5800
 )
+

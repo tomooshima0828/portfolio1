@@ -2,13 +2,16 @@
 
 <div class="container">
 <%= link_to '<<管理者専用トップページに戻る', admin_top_user_path(current_user), style: "font-size:16px;" %>
+<br><p></p>
+<%= link_to 'メニュー新規作成', new_menu_path, remote: true, class: "btn btn-md btn-primary" %>
 <p class='center'>【メニュー&料金一覧】</p>
 <table class="table table-bordered table-condensed table-hover">
   <thead>
     <tr class="table-head-1">
       <th class="center">サービス番号</th>
       <th class="center">サービス名</th>
-      <th class="center">価格</th>
+      <th class="center">税込価格</th>
+      <th class="center">編集</th>
       <th class="center">削除</th>
     </tr>
   </thead>
@@ -16,8 +19,9 @@
     <tbody>
       <tr class="center table-account">
         <td><%= menu.item_number %></td>
-        <td><%= menu.item %></td>
-        <td><%= menu.price %></td>
+        <td><%= link_to menu.item, menu_path(menu) %></td>
+        <td>¥<%= menu.price.to_s(:delimited) %></td>
+        <td><%= link_to '編集', edit_menu_path(menu), remote: true, class: "btn btn-xs btn-primary" %></td>
         <td><%= link_to '削除', menu_path(menu), method: :delete, data: { confirm: "メニューを削除しますか?" }, class: "btn btn-xs btn-danger" %></td>
       </tr>
     </tbody>
@@ -28,3 +32,5 @@
     <p>　　　　　</p>
 </div>
 
+<div id="menu-new" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="menu-edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       # GET	/users/:id/admin_top
       get "admin_top"
       resources :menus
+      get "admin_events"
     end
     resources :events, except: :show do
       collection do # collectionはevent idなし

@@ -1,0 +1,41 @@
+<div class="modal-dialog modal-md modal-dialog-center">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+
+
+
+<h1 class="modal-title">新規メニュー作成</h1>
+<div class="modal-body">
+<div class="container">
+  
+    <%= form_with(model: @menu, url: menus_path(current_user, @menu), local: true) do |f| %>
+      <div class="form-group">
+        <%= f.label :item_number %>
+        <%= f.number_field :item_number, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :item %>
+        <%= f.text_field :item, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :price %>
+        <%= f.number_field :price, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+      
+      <%= f.submit "新規作成", class: "btn btn-md btn-primary" %>
+      <%= link_to 'キャンセル', menus_path(current_user), class: "btn btn-md btn-info" %>
+      
+    <% end %>
+</div>
+</div>
+</div>
+</div>
+</div>

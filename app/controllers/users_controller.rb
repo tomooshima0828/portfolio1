@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
-  before_action :current_user_admin?, only: [:index, :admin_top]
+  before_action :current_user_admin?, only: [:index, :admin_top, :admin_events]
 
   def show # スタッフの業務管理ページ
     @user = User.find(params[:id])
@@ -88,12 +88,15 @@ class UsersController < ApplicationController
   end
 
   def admin_top
-   
+  end
+
+  def admin_events
+    @users = User.joins(:events).group("users.id").order(started_at: :desc)
+    @events = Event.where("started_at >= ?", Date.today).order(started_at: "DESC")
+    @past_events = Event.where("started_at < ?", Date.today).order(started_at: "DESC")
   end
 
   private
-
-  
 
   def event_status_params
     params.permit(:status_event_request)

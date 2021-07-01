@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   end
 
   def menus_overview
+    @menus = Menu.all
   end
 
   def staff
