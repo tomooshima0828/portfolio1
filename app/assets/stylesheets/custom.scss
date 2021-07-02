@@ -18,12 +18,19 @@
   src: font-url('Hiragino_MaruGProN_W4.ttc')
 }
 
+html {
+  min-height: 100%; //背景色の高さを画面サイズに合わせる
+}
 
 /* サイト全体のフォント指定 */
 body {
   font-family: "Hiragino-Maru";
   color: rgb(0, 0, 0);
-  background: rgb(241, 229, 194);
+  background: #fff6d0;
+  
+  // background-image: image-url('orange_bg1.png');
+  // background-color:rgba(255,255,255,0.4); //背景画像の色を薄くする場合① ①②の両方が必要
+  // background-blend-mode:lighten; //背景画像の色を薄くする場合② ①②の両方が必要
 }
 
 .contents {

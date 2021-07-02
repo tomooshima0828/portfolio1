@@ -96,6 +96,23 @@ class UsersController < ApplicationController
     @past_events = Event.where("started_at < ?", Date.today).order(started_at: "DESC")
   end
 
+  def user_event_new
+    @event = Event.new
+  end
+
+  def user_event_create
+    
+    @user = User.find_by(control_number: params[:user][:control_number])
+    @event = Event.new(event_params)
+
+    @event.save!
+    flash[:success] = "新規予約リクエストの作成に成功しました"
+    redirect_to user_path(current_user) and return
+  rescue
+    flash[:danger] = "新規予約リクエストの作成に失敗しました"
+    redirect_to user_path(current_user) and return
+  end
+
   private
 
   def event_status_params
