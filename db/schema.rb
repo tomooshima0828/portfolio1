@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2021_06_30_042247) do
     t.boolean "staff", default: false
     t.string "phone"
     t.string "address"
+    t.string "provider"
+    t.string "uid"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

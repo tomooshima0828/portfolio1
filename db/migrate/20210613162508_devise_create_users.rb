@@ -12,6 +12,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.boolean :staff, default: false
       t.string :phone
       t.string :address
+      t.string :provider
+      t.string :uid
 
       ## Recoverable
       t.string   :reset_password_token
