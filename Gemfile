@@ -24,6 +24,8 @@ gem 'omniauth-line'
 gem 'dotenv-rails'
 gem 'omniauth', '~> 1.9.1'
 
+
+
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
