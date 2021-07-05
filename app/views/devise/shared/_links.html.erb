@@ -1,15 +1,29 @@
-<div class="form-group">
-  <%- if controller_name != 'sessions' %>
-    <%= link_to t(".sign_in"), new_session_path(resource_name) %><br />
+<div class="form-group center">
+
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= link_to omniauth_authorize_path(resource_name, provider) do %>
+        <%= image_tag "btn_login_base.png", size: "150x40" %><br />
+      <% end %>
+    <% end -%>
   <% end -%>
 
-  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to t(".sign_up"), new_registration_path(resource_name) %><br />
+  <br>
+  <%- if controller_name != 'sessions' %>
+    <%= link_to t(".sign_in"), new_session_path(resource_name), class: "btn btn-md btn-primary", style: "width:150px;" %><br />
   <% end -%>
+  
+
+  <br>
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <%= link_to t(".sign_up"), new_registration_path(resource_name), class: "btn btn-md btn-info", style: "width:150px;" %><br />
+  <% end -%>
+  <br>
 
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
     <%= link_to t(".forgot_your_password"), new_password_path(resource_name) %><br />
   <% end -%>
+  <br>
 
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
     <%= link_to t('.didn_t_receive_confirmation_instructions'), new_confirmation_path(resource_name) %><br />
@@ -19,13 +33,6 @@
     <%= link_to t('.didn_t_receive_unlock_instructions'), new_unlock_path(resource_name) %><br />
   <% end -%>
 
-  <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to omniauth_authorize_path(resource_name, provider) do %>
-        <%= image_tag "btn_login_base.png", size: "130x40" %>
-      <% end %>
-    <% end -%>
-  <% end -%>
 </div>
 
 <%#=　24行目　link_to t('.sign_in_with_provider', provider: OmniAuth::Utils.camelize(provider)), omniauth_authorize_path(resource_name, provider) %><%#=br /%>

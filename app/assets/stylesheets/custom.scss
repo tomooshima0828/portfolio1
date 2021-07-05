@@ -194,7 +194,7 @@ p {
   border-color: #000;
   border-width: 1px;
   width: 400px;
-  height: 400px;
+  height: 450px;
   padding-top: 30px;
   padding-left: 20px;
   background-color: rgb(238, 238, 224);
@@ -227,7 +227,7 @@ p {
 }
 
 .table-menu {
-  background-color: rgb(247, 247, 237);
+  background-color: #fff;
   width: 550px;
   margin: 10px;
   
@@ -247,7 +247,7 @@ p {
 }
 
 .table-account {
-  background-color: rgb(247, 247, 237);
+  background-color: #fff;
   width: 1000px;
   margin: 10px;
   
@@ -272,6 +272,12 @@ p {
 .table-head-3 {
   text-align: center;
   background-color: #ffa8f8;
+}
+
+.table-head-4 {
+  font-size: 16px;
+  text-align: center;
+  background-color: #999db1;
 }
 
 .radius-square-admin {
@@ -301,6 +307,11 @@ p {
 
 .radious-square-bg3{
   background-color:rgb(215, 255, 170);
+}
+
+.table-margin {
+  height: 10px;
+  background-color: #fff6d0;
 }
 
 

@@ -55,17 +55,20 @@ class UsersController < ApplicationController
 
   def edit_event_response
     @event = Event.find(params[:format]) 
+    @menus = Menu.all
+    @users = User.where(staff: true).where.not(admin: true) # 担当者全員
   end
 
   def update_event_response
     
     event = Event.find(params[:id])
-    event.update_attributes!(event_params)
-    flash[:success] = "お客様リクエストを更新しました"
-    redirect_to user_path(current_user) and return
-  rescue
-    flash[:danger] = "お客様リクエストの更新に失敗しました"
-    redirect_to user_path(current_user) and return
+    if event.update_attributes(event_params)
+      flash[:success] = "お客様リクエストを更新しました"
+      redirect_to user_path(current_user)
+    else
+      flash[:danger] = "お客様リクエストの更新に失敗しました"
+      render 'edit_event_response_user_path(current_user)'
+    end
   end
 
   def destroy_event_response
@@ -91,9 +94,31 @@ class UsersController < ApplicationController
   end
 
   def admin_events
-    @users = User.joins(:events).group("users.id").order(started_at: :desc)
-    @events = Event.where("started_at >= ?", Date.today).order(started_at: "DESC")
+    @present_users = User.joins(:events).group("users.id").order(started_at: :desc).where("started_at >= ?", Date.today)
+    @past_users = User.joins(:events).group("users.id").order(started_at: :desc).where("started_at < ?", Date.today)
+
+    @present_events = Event.where("started_at >= ?", Date.today).order(started_at: "DESC")
     @past_events = Event.where("started_at < ?", Date.today).order(started_at: "DESC")
+  end
+
+  def edit_admin_event_response
+    
+    @event = Event.find(params[:format]) 
+    @menus = Menu.all
+    @users = User.where(staff: true).where.not(admin: true) # 担当者全員
+  end
+
+  def update_admin_event_response
+    
+    event = Event.find(params[:id])
+    if event.update_attributes(event_params)
+      flash[:success] = "お客様リクエストを更新しました"
+      redirect_to admin_events_user_path(current_user)
+    else
+      flash[:danger] = "お客様リクエストの更新に失敗しました"
+      render 'edit_admin_event_response_user_path(current_user)'
+    end
+
   end
 
   def user_event_new
@@ -113,13 +138,12 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user) and return
   end
 
+  
+
   private
 
   def event_status_params
     params.permit(:status_event_request)
   end
   
-
- 
-
 end

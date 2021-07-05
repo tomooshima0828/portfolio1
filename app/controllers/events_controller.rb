@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   
   def new
     @event = Event.new
+    @menus = Menu.all
+    @users = User.where(staff: true).where.not(admin: true) # 担当者全員
     
   end
 
@@ -9,20 +11,19 @@ class EventsController < ApplicationController
     
     @event = Event.new(event_params)
     @event.user = current_user
-    if @event.save!
+    if @event.save
       flash[:success] = "予約リクエストに成功しました。"
-      redirect_to user_events_path and return
+      redirect_to user_events_path
     else
+      flash[:danger] = "予約リクエストに失敗しました。"
       render :new
     end
-  rescue
-    flash[:danger] = "予約リクエストに失敗しました。"
-    redirect_to user_events_path and return
   end
 
   def edit
     @event = Event.find(params[:id])
-    
+    @menus = Menu.all
+    @users = User.where(staff: true).where.not(admin: true) # 担当者全員
   end
 
   def update

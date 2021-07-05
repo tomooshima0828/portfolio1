@@ -1,104 +1,100 @@
 <h1>管理者専用ページ</h1>
 
 <div class="container">
-<%= link_to '<<管理者専用トップページに戻る', admin_top_user_path(current_user), style: "font-size:16px;" %>
-<p class="center">【現在のご予約リクエスト】</p>
-
-    <% @users.each do |user| %>
-    <table class="table table-bordered table-condensed table-account">
-    
-    <thead>
-      <tr><th colspan="6" class="table-head-2"><%= user.name %> からのご予約 [Email: <%= mail_to user.email %> ] [電話番号: <%= user.phone %> ]</th></tr>
-      <tr> 
-        <th class="table-head-1">ご希望の時間</th>
-        <th class="table-head-1">ご希望の内容</th>
-        <th class="table-head-1">ご希望のスタイリスト</th>
-        <th class="table-head-1">変更</th>
-        <th class="table-head-1">削除</th>
-        <th class="center" style="background-color: #FFFF00;">リクエスト状況</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @events.each do |event| %>
-      <% if event.user_id == user.id %> <%# これでeventのなかで該当するuserのeventだけを表示する  %>
-        <tr> 
-          <td class="center"><%= l(event.started_at, format: :custom) %></td>
-          <td class="center"><%= event.title %></td>
-          <td class="center"><%= event.selector_stylist_request %></td>
-          <td class="center"><%= link_to '変更', '#', remote: true, class: "btn btn-xs btn-primary" %></td>
-          <td class="center"><%= link_to '削除', '#', method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-xs btn-info" %></td>
-          <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
-
-        </tr>
+  <%= link_to '<<管理者専用トップページに戻る', admin_top_user_path(current_user), style: "font-size:16px;" %>
+  <p class="center" style="font-size:20px;">【現在のご予約リクエスト】</p>
+    <% @present_users.each do |user| %>
+      <table class="table table-bordered table-condensed table-account">
         <thead>
-          <th colspan="5" class="table-head-1">ご要望/通信欄</th>
-          <th class="table-head-1">リクエスト状況の更新</th>
+          <tr><th colspan="6" class="table-head-2"><%= user.name %> からのご予約 [Email: <%= mail_to user.email %> ] [電話番号: <%= user.phone %> ]</th></tr>
         </thead>
-        <tbody>
-          <td colspan="5"  class="center"><%= event.note %></td>
-          <td class="center">
-            <%= form_with(model: @event, url: '#', method: :patch, local: true) do |f| %>
-              <%= f.select :status_event_request, [['リクエスト中'], ['予約手続完了(予約済)'],['内容変更が必要'], ['保留中'], ['リクエスト取消し済']], { include_blank: true } %>
-              <%= f.submit "更新", class: "btn btn-xs btn-danger" %>
-            <% end %>
-          </td>
-        </tbody>
+        <% @present_events.each do |event| %>
+          <% if event.user_id == user.id %> <%# これでeventのなかで該当するuserのeventだけを表示する  %>
+            <thead>  
+              <tr><th colspan="6" class="table-margin"></th></tr>
+              <tr> 
+                <th class="table-head-1">ご希望の時間</th>
+                <th class="table-head-1">ご希望の内容</th>
+                <th class="table-head-1">ご希望のスタイリスト</th>
+                <th class="table-head-1">変更</th>
+                <th class="table-head-1">削除</th>
+                <th class="center" style="background-color: #FFFF00;">リクエスト状況</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr> 
+                <td class="center"><%= l(event.started_at, format: :custom) %></td>
+                <td class="center"><%= event.title %></td>
+                <td class="center"><%= event.selector_stylist_request %></td>
+                <td class="center"><%= link_to '変更', edit_admin_event_response_user_path(user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
+                <td class="center"><%= link_to '削除', '#', method: :delete, data: { confirm: '削除してもよろしいでしょうか?' }, class: "btn btn-xs btn-info" %></td>
+                <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
+              </tr>
+              <tr>
+                <th colspan="5" class="table-head-1">ご要望/通信欄</th>
+                <th class="table-head-1">リクエスト状況の更新</th>
+              </tr>
+              <tr>
+                <td colspan="5"  class="center"><%= event.note %></td>
+                <td class="center">
+                  <%= form_with(model: @event, url: '#', method: :patch, local: true) do |f| %>
+                    <%= f.select :status_event_request, [['リクエスト中'], ['予約手続完了(予約済)'],['内容変更が必要'], ['保留中'], ['リクエスト取消し済']], { include_blank: true } %>
+                    <%= f.submit "更新", class: "btn btn-xs btn-danger" %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
         <% end %>
-      <% end %>
+      </table>
     <% end %>
-    </tbody>
-  </table>
 
-  <p class="center">【過去のご予約リクエスト履歴(変更不可)】</p>
-    <% @users.each do |user| %>
-    <table class="table table-bordered table-condensed table-account">
-    
-    <thead>
-      <tr><th colspan="6" class="table-head-2"><%= user.name %> からのご予約 [Email: <%= mail_to user.email %> ] [電話番号: <%= user.phone %> ]</th></tr>
-      <tr> 
-        <th class="table-head-1">ご希望の時間</th>
-        <th class="table-head-1">ご希望の内容</th>
-        <th class="table-head-1">ご希望のスタイリスト</th>
-        <th class="table-head-1">変更</th>
-        <th class="table-head-1">削除</th>
-        <th class="center" style="background-color: #FFFF00;">リクエスト状況</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @past_events.each do |event| %>
-      <% if event.user_id == user.id %> <%# これでeventのなかで該当するuserのeventだけを表示する  %>
-        <tr> 
-          <td class="center"><%= l(event.started_at, format: :custom) %></td>
-          <td class="center"><%= event.title %></td>
-          <td class="center"><%= event.selector_stylist_request %></td>
-          <td class="center"><button type="button" class="btn btn-xs btn-dark">変更</button>
-          <td class="center"><button type="button" class="btn btn-xs btn-dark">削除</button>
-          <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
+  <p>　　　　　</p>
 
-        </tr>
+  <p class="center" style="font-size:20px;">【過去のご予約リクエスト履歴】</p>
+    <% @past_users.each do |user| %>
+      <table class="table table-condensed table-account">
         <thead>
-          <th colspan="5" class="table-head-1">ご要望/通信欄</th>
-          <th class="table-head-1">リクエスト状況の更新</th>
+          <tr><th colspan="6" class="table-head-4"><%= user.name %> からのご予約 [Email: <%= mail_to user.email %> ] [電話番号: <%= user.phone %> ]</th></tr>
         </thead>
-        <tbody>
-          <td colspan="5"  class="center"><%= event.note %></td>
-          <td class="center">
-            <%= form_with(model: @event, url: '#', method: :patch, local: true) do |f| %>
-              <%= f.select :status_event_request, ['　　　　　　　　　　'], { include_blank: true } %>
-              <button type="button" class="btn btn-xs btn-dark">更新</button>
-            <% end %>
-          </td>
-        </tbody>
+        <% @past_events.each do |event| %>
+          <% if event.user_id == user.id %> <%# これでeventのなかで該当するuserのeventだけを表示する  %>
+            <thead>
+              <tr><th colspan="6" class="table-margin"></th></tr>
+              <tr> 
+                <th class="table-head-1">ご希望の時間</th>
+                <th class="table-head-1">ご希望の内容</th>
+                <th class="table-head-1">ご希望のスタイリスト</th>
+                <th class="table-head-1">変更</th>
+                <th class="table-head-1">削除</th>
+                <th class="center table-head-1">リクエスト状況</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr> 
+                <td class="center"><%= l(event.started_at, format: :custom) %></td>
+                <td class="center"><%= event.title %></td>
+                <td class="center"><%= event.selector_stylist_request %></td>
+                <td class="center"><button type="button" class="btn btn-xs btn-dark">変更</button></td>
+                <td class="center"><button type="button" class="btn btn-xs btn-dark">削除</button></td>
+                <td class="center" style="font-weight: 900;"><%= event.status_event_request %></td>
+              </tr>
+              <tr>
+                <th colspan="5" class="table-head-1">ご要望/通信欄</th>
+                <th class="table-head-1">リクエスト状況の更新</th>
+              </tr>
+              <td colspan="5"  class="center"><%= event.note %></td>
+              <td class="center">
+                <%= form_with(model: @event, url: '#', method: :patch, local: true) do |f| %>
+                  <%= f.select :status_event_request, ['　　　　　　　　　　'], { include_blank: true } %>
+                  <button type="button" class="btn btn-xs btn-dark">更新</button>
+                <% end %>
+              </td>
+            </tbody>
+          <% end %>
         <% end %>
-      <% end %>
+      </table>
     <% end %>
-    </tbody>
-  </table>
-
 </div>
 
-
-
-<% if !current_user.admin? %>
-  
-<% end %>
+<div id="edit-admin-event-response" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

@@ -14,15 +14,16 @@
 
   <body>
     <%= render 'layouts/header' %>
-
+    <div class="container">
     <div class="contents">
       <p>　　　　　</p>
       <p>　　　　　</p>
     <%= render 'shared/flash_messages' %>
       <%= yield %>
-
     </div>
-    
+      <p>　　　　　</p>
+      <p>　　　　　</p>   
+    </div>
     <%= render 'layouts/footer' %>
 
   </body>
