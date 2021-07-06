@@ -4,8 +4,10 @@ class UsersController < ApplicationController
 
   def show # スタッフの業務管理ページ
     @user = User.find(params[:id])
-    @users = User.joins(:events).group("users.id")
-    @events = Event.where("started_at >= ?", Date.today).order(started_at: "ASC")
+
+    @users = User.joins(:events).group("users.id").order(name: :asc).where("started_at >= ?", Date.today)
+    @events = Event.where("started_at >= ?", Date.today).order(started_at: :asc)
+
     if current_user == !current_user.admin? # アドミン以外の人がログインした場合
       @user = current_user
     end
@@ -82,34 +84,33 @@ class UsersController < ApplicationController
   def update_request_status
     
     event = Event.find(params[:format])
-    event.update_attributes!(event_status_params)
-    flash[:success] = "お客様リクエストを更新しました"
-    redirect_to user_path(current_user) and return
-  rescue
+    if event.update_attributes(event_status_params)
+      flash[:success] = "お客様リクエストを更新しました"
+      redirect_to user_path(current_user)
+    else
     flash[:danger] = "お客様リクエストの更新に失敗しました"
-    redirect_to user_path(current_user) and return
+    render "user_path(current_user)"
+    end
   end
 
   def admin_top
   end
 
   def admin_events
-    @present_users = User.joins(:events).group("users.id").order(started_at: :desc).where("started_at >= ?", Date.today)
-    @past_users = User.joins(:events).group("users.id").order(started_at: :desc).where("started_at < ?", Date.today)
+    @present_users = User.joins(:events).group("users.id").order(name: :asc).where("started_at >= ?", Date.today)
+    @past_users = User.joins(:events).group("users.id").order(name: :asc).where("started_at < ?", Date.today)
 
-    @present_events = Event.where("started_at >= ?", Date.today).order(started_at: "DESC")
-    @past_events = Event.where("started_at < ?", Date.today).order(started_at: "DESC")
+    @present_events = Event.where("started_at >= ?", Date.today).order(started_at: :asc)
+    @past_events = Event.where("started_at < ?", Date.today).order(started_at: :asc)
   end
 
   def edit_admin_event_response
-    
     @event = Event.find(params[:format]) 
     @menus = Menu.all
     @users = User.where(staff: true).where.not(admin: true) # 担当者全員
   end
 
   def update_admin_event_response
-    
     event = Event.find(params[:id])
     if event.update_attributes(event_params)
       flash[:success] = "お客様リクエストを更新しました"
@@ -118,8 +119,27 @@ class UsersController < ApplicationController
       flash[:danger] = "お客様リクエストの更新に失敗しました"
       render 'edit_admin_event_response_user_path(current_user)'
     end
-
   end
+
+  def destroy_admin_event_response
+    event = Event.find(params[:format])
+    event.destroy
+    flash[:success] = "予約リクエストを削除しました。"
+    redirect_to admin_events_user_path(current_user)
+  end
+
+  def update_admin_request_status
+    
+    event = Event.find(params[:format])
+    if event.update_attributes(event_status_params)
+      flash[:success] = "お客様リクエストを更新しました"
+      redirect_to admin_events_user_path(current_user)
+    else
+    flash[:danger] = "お客様リクエストの更新に失敗しました"
+    render "admin_events_user_path(current_user)"
+    end
+  end
+
 
   def user_event_new
     @event = Event.new

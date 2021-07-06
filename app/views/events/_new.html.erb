@@ -17,7 +17,7 @@
               <%= f.datetime_select :started_at, { minute_step: 30, start_hour: 9, end_hour: 18 } %>
               <%= f.label :selector_stylist_request %>
               <%= f.collection_select :selector_stylist_request, @users, :name, :name, { include_blank:"希望なし" }, { class: "form-control" } %>
-              <%= f.hidden_field :status_event_request, value: "リクエスト中" %>
+              <%= f.hidden_field :status_event_request, value: "現在リクエスト中" %>
               <%= f.label :note %>
               <%= f.text_area :note, class: "form-control" %>
             

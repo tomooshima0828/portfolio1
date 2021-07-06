@@ -6,22 +6,22 @@
   <p>　　　　　</p>
   <p class="center">ワタシ史上最高!のカワイイになれる☆ 忙しくてもオシャレしたい大人女子に大人気! </p>
   <p class="center">男性のお客様もたくさんいらっしゃいます! 清潔感アップでモテるアナタを演出します!</p>
-  <p class="center">☆☆☆美容室オレンジはWebアプリのポートフォリオ制作のための架空の店舗です☆☆☆</p>
+  <p class="center"><font color="#FF00FF">☆☆☆美容室オレンジはWebアプリのポートフォリオ制作のための架空の店舗です☆☆☆</font></p>
 </div>
 
 <ul class="box flexbox">
-    <li class="flexbox__item" style="margin-right: 5px;"><%= image_tag 'haircut1.jpg', size: "240x180" %></li>
-    <li class="flexbox__item" style="margin-right: 5px;"><%= image_tag 'orange_salon.png', size: "240x180" %></li>
-    <li class="flexbox__item"><%= image_tag 'shampoo1.png', size: "240x180" %></li>
+    <li class="flexbox__item" style="margin-right: 5px;"><%= image_tag 'haircut1.jpg', size: "260x180" %></li>
+    <li class="flexbox__item" style="margin-right: 5px;"><%= image_tag 'orange_salon.png', size: "260x180" %></li>
+    <li class="flexbox__item"><%= image_tag 'shampoo1.png', size: "260x180" %></li>
 </ul>
 
 <ul class="box flexbox">
-  <li class="radius-square1">
+  <li class="radius-square-top radious-square-top-bg1">
     <p class="highlight">Web予約で5%割引!!!</p>
     <p>予約変更　キャンセル</p>
     <p>こちらから☆</p>
     <% if user_signed_in? %>
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-lg btn-primary" %><br>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-lg btn-info" %><br>
       <p></p>
       <% if current_user.admin? %>
         <p style="font-size: 14px;"><%= link_to current_user.name, admin_top_user_path(current_user), { style: "font-size: 16px;" } %>さんがログイン中</p>
@@ -31,20 +31,32 @@
         <p style="font-size: 14px;"><%= link_to current_user.name, user_events_path(current_user), { style: "font-size: 16px;" } %>さんがログイン中</p>
       <% end %>
     <% else %>
-      <%= link_to 'ログイン', new_user_session_path, class: "btn btn-lg btn-danger"%>
+      <%= link_to 'ログイン', new_user_session_path, class: "btn btn-lg btn-outline-danger-top"%>
+      <%= link_to new_user_session_path do %>
+        <%= image_tag "btn_login_base.png", size: "140x45" %>
+      <% end %>
       <p></p>
       <p style="font-size: 14px;">はじめてのお客様 <%= link_to '新規登録', new_user_registration_path, class: "btn btn-md btn-info" %></p>
     <% end %>
   </li>
-  <li class="radius-square2">
-    <p>★お電話でのご予約はこちら★</p>
-    <p class="center" style="font-size:18px; font-weight:bold;">TEL: 0120-117-315</p>
-    <p>☆☆予約外の方はご来店の前に必ずお電話で空き状況をご確認ください☆☆</p>
-    <p>神奈川県海老名市国分東1192</p>
-    <p>営業時間: 09:00-19:00</p>
-    <p>定休日: 毎週火曜日</p>
+  <li class="radius-square-top radious-square-top-bg2">
+    <p>☆お電話でのご予約はこちら☆</p>
+    <p class="center" style="font-size:22px; font-weight:bold;">TEL: 0120-117-315</p>
+    <p>予約外でお越しの場合はお電話で</p>
+    <p>事前に空き状況をご確認ください</p>
+    <p>☆受付時間☆</p>
+    <p>09:00-19:00</p>
+    <p>☆定休日☆</p>
+    <p>毎週火曜日</p>
   </li>
-  <li><%= image_tag 'styling1.png', size: "240x240" %></li>
+  <li class="radius-square-top radious-square-top-bg3">
+  <p>☆アクセス☆</p>
+  <p>小田急線 愛甲石田駅より徒歩5分</p>
+  <p>☆住所☆</p>
+  <p>神奈川県厚木市愛甲1192-296</p>
+  <p>　　　　　</p>
+  <%= link_to '地図を見る', "#", class: "btn btn-lg btn-outline-primary" %>
+  </li>
 </ul>
 </div>
 <div>

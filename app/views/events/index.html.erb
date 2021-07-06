@@ -33,35 +33,35 @@
 
   <p></p>
   <p class="center">【リクエスト済み一覧】</p>
-    <table class="table table-bordered table-condensed table-account">
-      <thead>
-        <tr>   
-          <th class="table-head-1">ご希望の時間</th>
-          <th class="table-head-1">ご希望の内容</th>
-          <th class="table-head-1">ご希望のスタイリスト</th>
-          <th class="center" style="background-color: #FFFF00;">リクエスト状況</th>
-          <th class="table-head-1">変更</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @events.each do |event| %>
-          <tr>
-            <td class="center"><%= l(event.started_at, format: :custom) %></td>
-            <td class="center"><%= event.title %></td>
-            <td class="center"><%= event.selector_stylist_request %></td>
-            <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
-            <td class="center"><%= link_to '変更', edit_user_event_path(current_user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
+    <% @events.each do |event| %>
+      <table class="table table-bordered table-condensed table-account">
+        <thead>
+          <tr>   
+            <th class="table-head-1">ご希望の時間</th>
+            <th class="table-head-1">ご希望の内容</th>
+            <th class="table-head-1">ご希望のスタイリスト</th>
+            <th class="center" style="background-color: #FFFF00;">リクエスト状況</th>
+            <th class="table-head-1">変更</th>
           </tr>
-          <td class="table-head-1">ご要望/通信欄</td>
-          <td colspan="5"  class="center"><%= event.note %></td>
-          
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+            <tr>
+              <td class="center"><%= l(event.started_at, format: :custom) %></td>
+              <td class="center"><%= event.title %></td>
+              <td class="center"><%= event.selector_stylist_request %></td>
+              <td class="center" style="color: #F00; font-weight: 900;"><%= event.status_event_request %></td>
+              <td class="center"><%= link_to '変更', edit_user_event_path(current_user, event), remote: true, class: "btn btn-xs btn-primary" %></td>
+            </tr>
+            <td class="table-head-1">ご要望/通信欄</td>
+            <td colspan="5"  class="center"><%= event.note %></td>
+            
+        </tbody>
+      </table>
+    <% end %>
 
     <p class="center">☆ご予約リクエストが完了するまでに約1-2日お時間をいただいております☆</p>
     <p class="center">☆ご予約のキャンセルは予約日の2日前までにご連絡をお願いいたします☆</p>
-    <p class="center">☆定休日は毎週火曜日です☆</p>
+    <p class="center">☆定休日は毎週<font color="red">火曜日</font>です☆</p>
     <div class="container-calendar">
       <%= month_calendar events: @events do |date, events| %>
         <%= date.day %>

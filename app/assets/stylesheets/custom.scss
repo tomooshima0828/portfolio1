@@ -93,7 +93,7 @@ p {
 }
 
 #logo:hover {
-  color: rgb(170, 160, 160);
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -117,7 +117,7 @@ p {
 }
 
 .navbar-center {
-  margin-left: 100px;
+  margin-left: 300px;
   float: left;
 }
 
@@ -135,13 +135,13 @@ p {
   color: #fff;
   background-color: rgb(85, 65, 0);
   opacity: 0.85;
-  line-height: 2em;
+  line-height: 1.5em;
 
 }
 
-.radius-square1 {
+.radius-square-top {
   width: 260px;            /* 幅指定 */
-  height: 240px;              /* 高さ指定 */
+  height: 280px;              /* 高さ指定 */
   border-radius: 40px;        /* 角丸指定 */
   display:  inline-block;     /* インラインブロックする */
   box-sizing:  border-box;    /* 崩れ防止 */
@@ -149,28 +149,25 @@ p {
   margin-right: 5px;         /* 要素の空き具合指定 */
   padding:  20px;             /* 余白指定 */
   font-family: "ヒラギノ丸ゴ Pro W4","Hiragino Maru Gothic Pro";    /* フォントの種類を指定 */
-  text-align:  center;        /* 中央揃え */
+  text-align:  center; 
   line-height: 1.5em;
-  color:  rgb(0, 0, 0);               /* 文字色指定 */
-  background-color:rgb(218, 178, 93);
-  font-size: 17px;            /* 文字サイズ指定 */
+  color:  rgb(0, 0, 0); 
 }
 
-.radius-square2 {
-  width: 250px;            /* 幅指定 */
-  height: 240px;              /* 高さ指定 */
-  border-radius: 40px;        /* 角丸指定 */
-  display:  inline-block;     /* インラインブロックする */
-  box-sizing:  border-box;    /* 崩れ防止 */
-  margin-bottom: 5px;         /* 要素の空き具合指定 */
-  margin-right: 5px;         /* 要素の空き具合指定 */
-  padding:  20px;             /* 余白指定 */
-  font-family: "ヒラギノ丸ゴ Pro W4","Hiragino Maru Gothic Pro";    /* フォントの種類を指定 */
-  text-align:  left;        /* 中央揃え */
-  line-height: 1.5em;
-  color:  rgb(0, 0, 0);               /* 文字色指定 */
+.radious-square-top-bg1 {
+  background-color:#e6b779;
+  font-size: 17px; 
+         /* 中央揃え */
+}
+
+.radious-square-top-bg2 {
   background-color:#a8c3e6;
-  font-size: 12px;            /* 文字サイズ指定 */
+  font-size: 12px;
+}
+
+.radious-square-top-bg3 {
+  background-color:#fc9cf5;
+  font-size: 12px;
 }
 
 
@@ -220,6 +217,19 @@ p {
   border-width: 1px;
   width: 600px;
   height: 300px;
+  padding-top: 30px;
+  padding-left: 20px;
+  background-color: rgb(238, 238, 224);
+  border-radius: 20px;
+}
+
+.container-form-staff {
+  font-size: 22px;
+  border: dashed;
+  border-color: #000;
+  border-width: 1px;
+  width: 700px;
+  height: 350px;
   padding-top: 30px;
   padding-left: 20px;
   background-color: rgb(238, 238, 224);
@@ -298,7 +308,7 @@ p {
 }
 
 .radious-square-bg1{
-  background-color:rgb(233, 147, 245);
+  background-color:rgb(246, 182, 255);
 }
 
 .radious-square-bg2{
@@ -312,6 +322,21 @@ p {
 .table-margin {
   height: 10px;
   background-color: #fff6d0;
+}
+
+.btn-outline-primary {
+  border: 3px solid #9baaff;
+  background-color: #f7d7fc;
+}
+
+.btn-outline-danger-top {
+  color: #ee7300;
+  border: 3px solid #ee7300;
+  background-color: #fff5ec;
+  width:140px;
+  height: 45px;
+  line-height: 1.0em;
+  margin-bottom: 0.2em;
 }
 
 

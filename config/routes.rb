@@ -31,6 +31,8 @@ Rails.application.routes.draw do
       get "admin_events"
       get "edit_admin_event_response"
       patch "update_admin_event_response"
+      delete "destroy_admin_event_response"
+      patch "update_admin_request_status"
     end
     resources :events, except: :show do
       collection do # collectionはevent idなし
