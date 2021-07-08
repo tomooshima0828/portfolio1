@@ -9,6 +9,6 @@ class StaticPagesController < ApplicationController
   def staff
   end
 
-  def inquiry
+  def map
   end
 end

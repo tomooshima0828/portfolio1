@@ -6,7 +6,7 @@
   <p>　　　　　</p>
   <p class="center">ワタシ史上最高!のカワイイになれる☆ 忙しくてもオシャレしたい大人女子に大人気! </p>
   <p class="center">男性のお客様もたくさんいらっしゃいます! 清潔感アップでモテるアナタを演出します!</p>
-  <p class="center"><font color="#FF00FF">☆☆☆美容室オレンジはWebアプリのポートフォリオ制作のための架空の店舗です☆☆☆</font></p>
+  <p class="center"><font color="#FF6600">☆☆☆美容室オレンジはWebアプリのポートフォリオ制作のための架空の店舗です☆☆☆</font></p>
 </div>
 
 <ul class="box flexbox">
@@ -51,11 +51,16 @@
   </li>
   <li class="radius-square-top radious-square-top-bg3">
   <p>☆アクセス☆</p>
-  <p>小田急線 愛甲石田駅より徒歩5分</p>
+  <p>小田急線海老名駅より徒歩5分</p>
   <p>☆住所☆</p>
-  <p>神奈川県厚木市愛甲1192-296</p>
+  <p>神奈川県海老名市</p>
+  <p>今井南町1192-296</p>
   <p>　　　　　</p>
-  <%= link_to '地図を見る', "#", class: "btn btn-lg btn-outline-primary" %>
+  <%= link_to '地図を見る', map_path, class: "btn btn-lg btn-outline-primary" %>
+  <%= link_to map_path do %>
+    <%= image_tag "google_maps_icon.png", size: "45x45", style: "border-radius: 8px;" %>
+  <% end %>
+
   </li>
 </ul>
 </div>

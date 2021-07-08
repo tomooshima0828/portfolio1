@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get "/menus_overview", to: 'static_pages#menus_overview'
   get "/staff", to: 'static_pages#staff'
-  get "/inquiry", to: 'static_pages#inquiry'
+  get "/map", to: 'static_pages#map'
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
