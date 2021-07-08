@@ -8,6 +8,16 @@ class User < ApplicationRecord
 
   before_save { self.email = email.downcase }
 
+  validates :name, length: { maximum: 30 }
+  validates :phone, length: { maximum: 20 }
+  validates :address, length: { maximum: 100 }
+
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 50 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: true
+
   # 以下を追加
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first
