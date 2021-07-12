@@ -1,17 +1,18 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   before_action :current_user_admin?, only: [:index, :admin_top, :admin_events]
+  
+  
 
   def show # スタッフの業務管理ページ
     @user = User.find(params[:id])
-
+    
     @users = User.joins(:events).group("users.id").order(name: :asc).where("started_at >= ?", Date.today)
     @events = Event.where("started_at >= ?", Date.today).order(started_at: :asc)
-
-    if current_user == !current_user.admin? # アドミン以外の人がログインした場合
-      @user = current_user
+    
+    if !current_user.admin?
+      redirect_to root_url unless @user == current_user
     end
-  
   end
 
   def index

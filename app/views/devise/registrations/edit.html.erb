@@ -51,12 +51,14 @@
       </div>
     <% end %>
     <p></p><br>
-    <div class="form-group">
-      <p style="font-size:14px;"><%#= t('.unhappy') %>ご登録が不要の場合</p>
-      <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "btn btn-sm btn-danger" %>
+    <% unless (current_user.admin? || current_user.staff?) %>
+      <div class="form-group">
+        <p style="font-size:14px;"><%#= t('.unhappy') %>ご登録が不要の場合</p>
+        <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "btn btn-sm btn-danger" %>
+        <p>　　　　　</p>
       <p>　　　　　</p>
-    <p>　　　　　</p>
-    <p>　　　　　</p>
-    </div>
+      <p>　　　　　</p>
+      </div>
+    <% end %>
   </div>
 </div>
