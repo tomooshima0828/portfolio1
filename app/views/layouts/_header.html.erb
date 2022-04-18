@@ -1,14 +1,14 @@
 <header class="header navbar nabvar-fixed-top">
   <div>
     <%= link_to '美容室オレンジ', root_path, id: "logo" %>
-      
+
     <div>
       <ul class="nav navbar-nav navbar-center">
-        <li><%= link_to 'ホーム', root_url, class: "nav" %></li>
+        <li><%= link_to 'ホーム', root_url, class: "`nav" %></li>
         <li><%= link_to 'メニュー&料金', menus_overview_path, class: "nav" %></li>
         <li><%= link_to 'スタッフ紹介', staff_path, class: "nav" %></li>
         <li><%= link_to 'アクセス', map_path, class: "nav" %></li>
-      </ul>    
+      </ul>
     </div>
 
     <div>
@@ -19,7 +19,7 @@
         <% elsif user_signed_in? && current_user.staff? %>
           【<%= link_to current_user.name, user_path(current_user), { style: "font-size: 16px;" } %>さん】
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-info nav-login" %>
-        <% elsif user_signed_in? %> 
+        <% elsif user_signed_in? %>
           【<%= link_to current_user.name, user_events_path(current_user), { style: "font-size: 16px;" } %>さん】
            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-info nav-login" %>
         <% else %>
